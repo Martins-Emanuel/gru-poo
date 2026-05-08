@@ -1,0 +1,273 @@
+import { useState } from 'react';
+import { Camera, Car, MapPin, Users } from 'lucide-react';
+
+export default function App() {
+  const [formData, setFormData] = useState({
+    chapa: '',
+    veiculo: '',
+    chassi: '',
+    rota: '',
+    alunos: '',
+    kmInicial: '',
+    kmParada1: '',
+    kmParada2: '',
+    kmFinal: '',
+    confirmacao: false
+  });
+
+  const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, type, checked } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+  };
+
+  const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPhotoPreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.confirmacao) {
+      alert('Por favor, confirme que as informações são verídicas.');
+      return;
+    }
+    console.log('Dados enviados:', formData);
+    alert('Registro de viagem enviado com sucesso!');
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-8 px-4">
+      <div className="max-w-2xl mx-auto">
+        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+          {/* Header */}
+          <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-8 py-6">
+            <div className="flex items-center gap-3">
+              <Car className="text-white" size={32} />
+              <div>
+                <h1 className="text-2xl font-bold text-white">Controle de Frota</h1>
+                <p className="text-blue-100 text-sm">Registro de Viagem</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="p-8">
+            {/* Foto do Motorista */}
+            <div className="flex flex-col items-center mb-8">
+              <div className="relative">
+                <div className="w-32 h-32 rounded-full bg-slate-100 border-4 border-slate-200 flex items-center justify-center overflow-hidden">
+                  {photoPreview ? (
+                    <img src={photoPreview} alt="Motorista" className="w-full h-full object-cover" />
+                  ) : (
+                    <Camera className="text-slate-400" size={40} />
+                  )}
+                </div>
+                <label htmlFor="photo-upload" className="absolute bottom-0 right-0 bg-blue-600 text-white rounded-full p-2 cursor-pointer hover:bg-blue-700 transition-colors shadow-lg">
+                  <Camera size={20} />
+                  <input
+                    id="photo-upload"
+                    type="file"
+                    accept="image/*"
+                    onChange={handlePhotoUpload}
+                    className="hidden"
+                  />
+                </label>
+              </div>
+              <p className="text-sm text-slate-500 mt-3">Foto do Motorista</p>
+            </div>
+
+            {/* Informações do Veículo */}
+            <div className="mb-6">
+              <h2 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
+                <Car size={20} className="text-blue-600" />
+                Informações do Veículo
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Chapa
+                  </label>
+                  <input
+                    type="text"
+                    name="chapa"
+                    value={formData.chapa}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                    placeholder="Ex: 001"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Veículo
+                  </label>
+                  <input
+                    type="text"
+                    name="veiculo"
+                    value={formData.veiculo}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                    placeholder="Ex: ABC-1234"
+                    required
+                  />
+                </div>
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Chassi
+                  </label>
+                  <input
+                    type="text"
+                    name="chassi"
+                    value={formData.chassi}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                    placeholder="Ex: 9BWZZZ377VT004251"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Rota e Alunos */}
+            <div className="mb-6">
+              <h2 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
+                <MapPin size={20} className="text-blue-600" />
+                Rota e Passageiros
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Rota
+                  </label>
+                  <input
+                    type="text"
+                    name="rota"
+                    value={formData.rota}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                    placeholder="Ex: Centro - Zona Norte"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2 flex items-center gap-2">
+                    <Users size={16} />
+                    Alunos
+                  </label>
+                  <input
+                    type="number"
+                    name="alunos"
+                    value={formData.alunos}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                    placeholder="Ex: 25"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Quilometragem */}
+            <div className="mb-6">
+              <h2 className="text-lg font-semibold text-slate-800 mb-4">
+                Quilometragem
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    KM Inicial
+                  </label>
+                  <input
+                    type="number"
+                    name="kmInicial"
+                    value={formData.kmInicial}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                    placeholder="0000"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    KM Parada 1
+                  </label>
+                  <input
+                    type="number"
+                    name="kmParada1"
+                    value={formData.kmParada1}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                    placeholder="0000"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    KM Parada 2
+                  </label>
+                  <input
+                    type="number"
+                    name="kmParada2"
+                    value={formData.kmParada2}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                    placeholder="0000"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    KM Final
+                  </label>
+                  <input
+                    type="number"
+                    name="kmFinal"
+                    value={formData.kmFinal}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                    placeholder="0000"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Confirmação */}
+            <div className="mb-6 p-4 bg-slate-50 rounded-lg border border-slate-200">
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  name="confirmacao"
+                  checked={formData.confirmacao}
+                  onChange={handleInputChange}
+                  className="mt-1 w-5 h-5 text-blue-600 rounded border-slate-300 focus:ring-2 focus:ring-blue-500"
+                  required
+                />
+                <span className="text-sm text-slate-700 font-medium">
+                  Eu confirmo que todas as informações citadas são de origem verídica.
+                </span>
+              </label>
+            </div>
+
+            {/* Botão Enviar */}
+            <button
+              type="submit"
+              className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold py-4 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+            >
+              ENVIAR
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+}
