@@ -4,9 +4,9 @@
   --font-size: 16px;
   --background: #2bff00;
   --foreground: oklch(0.145 0 0);
-  --card: #ffffff;
+  --card: #00ff2a;
   --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
+  --popover: oklch(86.799% 0.28216 143.927);
   --popover-foreground: oklch(0.145 0 0);
   --primary: #030213;
   --primary-foreground: oklch(1 0 0);
