@@ -4,7 +4,7 @@
   --font-size: 16px;
   --background: #ffffff;
   --foreground: oklch(0.145 0 0);
-  --card: #ff0000;
+  --card: #2396d4;
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(100% 0.00011 271.152);
   --popover-foreground: oklch(0.145 0 0);
@@ -16,7 +16,7 @@
   --muted-foreground: #717182;
   --accent: #e9ebef;
   --accent-foreground: #030213;
-  --destructive: #d4183d;
+  --destructive: #ffffff;
   --destructive-foreground: #ffffff;
   --border: rgba(0, 0, 0, 0.1);
   --input: transparent;
