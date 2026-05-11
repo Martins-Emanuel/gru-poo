@@ -47,7 +47,7 @@ export default function App() {
   };
 
   return (
-  <div className="min-h-screen bg-green-500 py-8 px-4">
+  <div className="min-h-screen bg-background py-8 px-4">
       <div className="max-w-2xl mx-auto">
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
           {/* Header */}
