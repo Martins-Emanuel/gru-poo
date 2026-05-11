@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Camera, Car, MapPin, Users } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function App() {
   const [formData, setFormData] = useState({
@@ -265,6 +266,13 @@ export default function App() {
             >
               ENVIAR
             </button>
+
+<Link 
+  to="/tabela" 
+  className="block text-center w-full bg-primary text-primary-foreground font-semibold py-4 rounded-lg transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 hover:opacity-90"
+>
+  Ir para a tabela
+</Link>
           </form>
         </div>
       </div>
