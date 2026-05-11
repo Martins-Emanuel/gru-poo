@@ -47,16 +47,16 @@ export default function App() {
   };
 
   return (
-  <div className="min-h-screen bg-background py-8 px-4">
+    <div className="min-h-screen bg-background py-8 px-4">
       <div className="max-w-2xl mx-auto">
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+        <div className="bg-card rounded-2xl shadow-xl overflow-hidden">
           {/* Header */}
-          <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-8 py-6">
+          <div className="bg-primary px-8 py-6">
             <div className="flex items-center gap-3">
-              <Car className="text-white" size={32} />
+              <Car className="text-primary-foreground" size={32} />
               <div>
-                <h1 className="text-2xl font-bold text-white">Controle de Frota</h1>
-                <p className="text-blue-100 text-sm">Registro de Viagem</p>
+                <h1 className="text-2xl font-bold text-primary-foreground">Controle de Frota</h1>
+                <p className="text-primary-foreground/70 text-sm">Registro de Viagem</p>
               </div>
             </div>
           </div>
@@ -66,14 +66,14 @@ export default function App() {
             {/* Foto do Motorista */}
             <div className="flex flex-col items-center mb-8">
               <div className="relative">
-                <div className="w-32 h-32 rounded-full bg-slate-100 border-4 border-slate-200 flex items-center justify-center overflow-hidden">
+                <div className="w-32 h-32 rounded-full bg-muted border-4 border-border flex items-center justify-center overflow-hidden">
                   {photoPreview ? (
                     <img src={photoPreview} alt="Motorista" className="w-full h-full object-cover" />
                   ) : (
-                    <Camera className="text-slate-400" size={40} />
+                    <Camera className="text-muted-foreground" size={40} />
                   )}
                 </div>
-                <label htmlFor="photo-upload" className="absolute bottom-0 right-0 bg-blue-600 text-white rounded-full p-2 cursor-pointer hover:bg-blue-700 transition-colors shadow-lg">
+                <label htmlFor="photo-upload" className="absolute bottom-0 right-0 bg-primary text-primary-foreground rounded-full p-2 cursor-pointer transition-colors shadow-lg">
                   <Camera size={20} />
                   <input
                     id="photo-upload"
@@ -84,18 +84,18 @@ export default function App() {
                   />
                 </label>
               </div>
-              <p className="text-sm text-slate-500 mt-3">Foto do Motorista</p>
+              <p className="text-sm text-muted-foreground mt-3">Foto do Motorista</p>
             </div>
 
             {/* Informações do Veículo */}
             <div className="mb-6">
-              <h2 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                <Car size={20} className="text-blue-600" />
+              <h2 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+                <Car size={20} className="text-primary" />
                 Informações do Veículo
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     Chapa
                   </label>
                   <input
@@ -103,13 +103,13 @@ export default function App() {
                     name="chapa"
                     value={formData.chapa}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                    className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-ring outline-none transition-all bg-input-background text-foreground"
                     placeholder="Ex: 001"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     Veículo
                   </label>
                   <input
@@ -117,13 +117,13 @@ export default function App() {
                     name="veiculo"
                     value={formData.veiculo}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                    className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-ring outline-none transition-all bg-input-background text-foreground"
                     placeholder="Ex: ABC-1234"
                     required
                   />
                 </div>
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     Chassi
                   </label>
                   <input
@@ -131,7 +131,7 @@ export default function App() {
                     name="chassi"
                     value={formData.chassi}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                    className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-ring outline-none transition-all bg-input-background text-foreground"
                     placeholder="Ex: 9BWZZZ377VT004251"
                     required
                   />
@@ -141,13 +141,13 @@ export default function App() {
 
             {/* Rota e Alunos */}
             <div className="mb-6">
-              <h2 className="text-lg font-semibold text-slate-800 mb-4 flex items-center gap-2">
-                <MapPin size={20} className="text-blue-600" />
+              <h2 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+                <MapPin size={20} className="text-primary" />
                 Rota e Passageiros
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     Rota
                   </label>
                   <input
@@ -155,13 +155,13 @@ export default function App() {
                     name="rota"
                     value={formData.rota}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                    className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-ring outline-none transition-all bg-input-background text-foreground"
                     placeholder="Ex: Centro - Zona Norte"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2 flex items-center gap-2">
+                  <label className="block text-sm font-medium text-foreground mb-2 flex items-center gap-2">
                     <Users size={16} />
                     Alunos
                   </label>
@@ -170,7 +170,7 @@ export default function App() {
                     name="alunos"
                     value={formData.alunos}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                    className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-ring outline-none transition-all bg-input-background text-foreground"
                     placeholder="Ex: 25"
                     required
                   />
@@ -180,12 +180,12 @@ export default function App() {
 
             {/* Quilometragem */}
             <div className="mb-6">
-              <h2 className="text-lg font-semibold text-slate-800 mb-4">
+              <h2 className="text-lg font-semibold text-foreground mb-4">
                 Quilometragem
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     KM Inicial
                   </label>
                   <input
@@ -193,13 +193,13 @@ export default function App() {
                     name="kmInicial"
                     value={formData.kmInicial}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                    className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-ring outline-none transition-all bg-input-background text-foreground"
                     placeholder="0000"
                     required
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     KM Parada 1
                   </label>
                   <input
@@ -207,12 +207,12 @@ export default function App() {
                     name="kmParada1"
                     value={formData.kmParada1}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                    className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-ring outline-none transition-all bg-input-background text-foreground"
                     placeholder="0000"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     KM Parada 2
                   </label>
                   <input
@@ -220,12 +220,12 @@ export default function App() {
                     name="kmParada2"
                     value={formData.kmParada2}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                    className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-ring outline-none transition-all bg-input-background text-foreground"
                     placeholder="0000"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                  <label className="block text-sm font-medium text-foreground mb-2">
                     KM Final
                   </label>
                   <input
@@ -233,7 +233,7 @@ export default function App() {
                     name="kmFinal"
                     value={formData.kmFinal}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+                    className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-ring focus:border-ring outline-none transition-all bg-input-background text-foreground"
                     placeholder="0000"
                     required
                   />
@@ -242,17 +242,17 @@ export default function App() {
             </div>
 
             {/* Confirmação */}
-            <div className="mb-6 p-4 bg-slate-50 rounded-lg border border-slate-200">
+            <div className="mb-6 p-4 bg-muted rounded-lg border border-border">
               <label className="flex items-start gap-3 cursor-pointer">
                 <input
                   type="checkbox"
                   name="confirmacao"
                   checked={formData.confirmacao}
                   onChange={handleInputChange}
-                  className="mt-1 w-5 h-5 text-blue-600 rounded border-slate-300 focus:ring-2 focus:ring-blue-500"
+                  className="mt-1 w-5 h-5 rounded border-border focus:ring-2 focus:ring-ring accent-primary"
                   required
                 />
-                <span className="text-sm text-slate-700 font-medium">
+                <span className="text-sm text-foreground font-medium">
                   Eu confirmo que todas as informações citadas são de origem verídica.
                 </span>
               </label>
@@ -261,7 +261,7 @@ export default function App() {
             {/* Botão Enviar */}
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold py-4 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+              className="w-full bg-primary text-primary-foreground font-semibold py-4 rounded-lg transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 hover:opacity-90"
             >
               ENVIAR
             </button>
